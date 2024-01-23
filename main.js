@@ -1,5 +1,7 @@
 // Exemple d'utilisation de la géolocalisation
 const $sortie = document.querySelector('.sortie')
+let previousAccelerometre = null
+let actualAccelerometre = null
 if (navigator.geolocation) {
   let previousPosition = null;
   let totalDistance = 0;
@@ -15,12 +17,15 @@ if (navigator.geolocation) {
       //console.log(position)
       if (previousPosition) {
         //$sortie.innerText = previousPosition
-        const distance = getDistance(previousPosition.coords, position.coords)
-        totalDistance += distance*1000
-        $sortie.innerHTML += `<p>Position précédente : ${previousPosition.coords.latitutde}</p>`
-        $sortie.innerHTML += `<p>Distance parcourue : ${Math.floor(totalDistance)} m.</p>`
+        if(actualAccelerometre != previousAccelerometre) {
+          const distance = getDistance(previousPosition.coords, position.coords)
+          totalDistance += distance
+          $sortie.innerHTML += `<p>Position précédente : ${previousPosition.coords.latitutde}</p>`
+          $sortie.innerHTML += `<p>Distance parcourue : ${Math.floor(totalDistance*1000)} m.</p>`
+        }
       }
       previousPosition = position
+      previousAccelerometre = actualAccelerometre
     }, function(error) {
         $sortie.innerText ='Erreur de géolocalisation :', error.message
     }, options)
@@ -45,3 +50,11 @@ if (navigator.geolocation) {
   function deg2rad(deg) {
     return deg * (Math.PI / 180);
   }
+
+  //accéléromètre
+const acl = new Accelerometer({ frequency: 10 });
+acl.addEventListener("reading", () => {
+  actualAccelerometre = acl.x
+});
+
+acl.start();

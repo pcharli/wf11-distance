@@ -18,7 +18,7 @@ if (navigator.geolocation) {
       }
   
     navigator.geolocation.watchPosition(function(position) {
-      window.navigator.vibrate([200, 100, 200])
+      //window.navigator.vibrate([200, 100, 200]) //test
       $sortie.innerHTML = `<p>Position : ${position.coords.latitude}</p>`
       //console.log(position)
       if (previousPosition) {

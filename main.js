@@ -19,6 +19,7 @@ if (navigator.geolocation) {
         totalDistance += distance;
         $sortie.innerText = 'Distance parcourue :', totalDistance;
       }
+      previousPosition = position;
     }, function(error) {
         $sortie.innerText ='Erreur de géolocalisation :', error.message
     }, options);

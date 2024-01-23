@@ -11,31 +11,32 @@ if (navigator.geolocation) {
       }
   
     navigator.geolocation.watchPosition(function(position) {
-      $sortie.innerText = position.coords.latitude
-      console.log(position)
+      $sortie.innerHTML = `<p>Position : ${position.coords.latitude}</p>`
+      //console.log(position)
       if (previousPosition) {
         //$sortie.innerText = previousPosition
-        const distance = getDistance(previousPosition.coords, position.coords);
-        totalDistance += distance;
-        $sortie.innerText = 'Distance parcourue :', totalDistance;
+        const distance = getDistance(previousPosition.coords, position.coords)
+        totalDistance += distance
+        $sortie.innerHTML += `<p>DPosition précédente : ${previousPosition}</p>`
+        $sortie.innerHTML += `<p>Distance parcourue : ${totalDistance}</p>`
       }
-      previousPosition = position;
+      previousPosition = position
     }, function(error) {
         $sortie.innerText ='Erreur de géolocalisation :', error.message
-    }, options);
+    }, options)
   }
 
   function getDistance(coords1, coords2) {
-    const R = 6371; // Rayon de la Terre en km
-    const dLat = deg2rad(coords2.latitude - coords1.latitude);
-    const dLon = deg2rad(coords2.longitude - coords1.longitude);
+    const R = 6371 // Rayon de la Terre en km
+    const dLat = deg2rad(coords2.latitude - coords1.latitude)
+    const dLon = deg2rad(coords2.longitude - coords1.longitude)
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(deg2rad(coords1.latitude)) * Math.cos(deg2rad(coords2.latitude)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c;
-    return distance;
+      Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    const distance = R * c
+    return distance
   }
   
   function deg2rad(deg) {

@@ -6,6 +6,7 @@ if (navigator.geolocation) {
   
     navigator.geolocation.watchPosition(function(position) {
       if (previousPosition) {
+        $sortie.innerText = previousPosition
         const distance = getDistance(previousPosition.coords, position.coords);
         totalDistance += distance;
         $sortie.innerText = 'Distance parcourue :', totalDistance;

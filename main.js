@@ -21,7 +21,7 @@ if (navigator.geolocation) {
           const distance = getDistance(previousPosition.coords, position.coords)
           totalDistance += distance
           $sortie.innerHTML += `<p>Position précédente : ${previousPosition.coords.latitutde}</p>`
-          $sortie.innerHTML += `<p>Distance parcourue : ${Math.floor(totalDistance*100)} m.</p>`
+          $sortie.innerHTML += `<p>Distance parcourue : ${Math.floor(totalDistance)} m.</p>`
         }
       }
       previousPosition = position
@@ -32,7 +32,7 @@ if (navigator.geolocation) {
   }
 
   function getDistance(coords1, coords2) {
-    const R = 6371 // Rayon de la Terre en km
+    const R = 6371*1000 // Rayon de la Terre en mètres
     const dLat = deg2rad(coords2.latitude - coords1.latitude) //diff de latitude
     const dLon = deg2rad(coords2.longitude - coords1.longitude) //diff de longitude
     //formule de la haversine, couramment utilisée dans la navigation et la cartographie pour mesurer la distance entre deux points sur une sphère, comme la Terre.

@@ -3,6 +3,12 @@ const $sortie = document.querySelector('.sortie')
 if (navigator.geolocation) {
     let previousPosition = null;
     let totalDistance = 0;
+
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 1000,
+        maximumAge: 0,
+      }
   
     navigator.geolocation.watchPosition(function(position) {
       if (previousPosition) {
@@ -15,7 +21,7 @@ if (navigator.geolocation) {
       previousPosition = position;
     }, function(error) {
         $sortie.innerText ='Erreur de géolocalisation :', error.message
-    });
+    }, options);
   }
   
   function getDistance(coords1, coords2) {

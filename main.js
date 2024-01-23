@@ -21,11 +21,12 @@ if (navigator.geolocation) {
           const distance = getDistance(previousPosition.coords, position.coords)
           totalDistance += distance
           $sortie.innerHTML += `<p>Position précédente : ${previousPosition.coords.latitutde}</p>`
-          $sortie.innerHTML += `<p>Distance parcourue : ${Math.floor(totalDistance)} m.</p>`
+          
         }
       }
       previousPosition = position
       previousAccelerometre = actualAccelerometre
+      $sortie.innerHTML += `<p>Distance parcourue : ${totalDistance} m.</p>`
     }, function(error) {
         $sortie.innerText ='Erreur de géolocalisation :', error.message
     }, options)

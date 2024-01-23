@@ -21,7 +21,7 @@ if (navigator.geolocation) {
           const distance = getDistance(previousPosition.coords, position.coords)
           totalDistance += distance
           $sortie.innerHTML += `<p>Position précédente : ${previousPosition.coords.latitutde}</p>`
-          $sortie.innerHTML += `<p>Distance parcourue : ${Math.floor(totalDistance*1000)} m.</p>`
+          $sortie.innerHTML += `<p>Distance parcourue : ${Math.floor(totalDistance*100)} m.</p>`
         }
       }
       previousPosition = position

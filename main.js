@@ -1,5 +1,9 @@
 // Exemple d'utilisation de la géolocalisation
-window.navigator.vibrate([200, 100, 200]);
+document.querySelector('.vibrate').addEventListener("click",e => {
+  e.preventDefault()
+  window.navigator.vibrate([200, 100, 200])
+})
+
 const $sortie = document.querySelector('.sortie')
 let previousAccelerometre = null
 let actualAccelerometre = null

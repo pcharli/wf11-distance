@@ -1,7 +1,7 @@
 // Exemple d'utilisation de la géolocalisation
 document.querySelector('.vibrate').addEventListener("click",e => {
   e.preventDefault()
-  window.navigator.vibrate([200, 100, 200])
+  
 })
 
 const $sortie = document.querySelector('.sortie')
@@ -12,7 +12,7 @@ if (navigator.geolocation) {
   let totalDistance = 0;
 
     const options = {
-        enableHighAccuracy: true,
+        enableHighAccurawindow.navigator.vibrate([200, 100, 200])cy: true,
         timeout: 1000,
         maximumAge: 0,
       }
@@ -26,7 +26,7 @@ if (navigator.geolocation) {
           const distance = getDistance(previousPosition.coords, position.coords)
           totalDistance += distance
           $sortie.innerHTML += `<p>Position précédente : ${previousPosition.coords.latitutde}</p>`
-          
+          window.navigator.vibrate([200, 100, 200])
         }
       }
       previousPosition = position

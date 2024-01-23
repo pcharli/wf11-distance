@@ -6,7 +6,7 @@ if (navigator.geolocation) {
 
     const options = {
         enableHighAccuracy: true,
-        timeout: 10,
+        timeout: 1000,
         maximumAge: 0,
       }
   
